@@ -8,7 +8,7 @@ const Comments = ({post}) => {
   const handleAddComment =async ()=>{
     if(!comment.trim()) return;
     try{
-      const res =  await axios.post(`http://localhost:5000/posts/${post._id}/comment`,{username:username,text:comment,});
+      const res =  await axios.post(`https://blog-website-zkvz.onrender.com/posts/${post._id}/comment`,{username:username,text:comment,});
       setAllComments(res.data.post.comments); // UI update
       setComment("") //clear input
     }catch(err){

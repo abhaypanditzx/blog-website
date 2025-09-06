@@ -59,7 +59,7 @@ function Auth({setMuser}) {
 const handleLogin = async()=>{
     try{
        
-        const response = await axios.post("http://localhost:5000/login",login)
+        const response = await axios.post("https://blog-website-zkvz.onrender.com/login",login)
       localStorage.setItem('user', JSON.stringify(response.data))
       setMuser(response.data);
       console.log(response.data)
@@ -71,12 +71,12 @@ const handleLogin = async()=>{
 
 const handleSignup = async ()=>{
     try{
-     const response =  await axios.post('http://localhost:5000/signup',signup)
+     const response =  await axios.post('https://blog-website-zkvz.onrender.com/signup',signup)
      localStorage.setItem('user',JSON.stringify(response.data));
     setMuser(response.data);
      navigate('/');
      console.log(response.data);
-     alert('signedup successfully!');
+     alert('signedUp successfully!');
     }catch(err){
         console.error(err.response?.data?.message || err.message)
     }

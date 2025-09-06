@@ -15,7 +15,7 @@ const Posts = () => {
     useEffect(() => {
         const getPosts = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/posts');
+                const response = await axios.get('https://blog-website-zkvz.onrender.com/posts');
                 setPosts(response.data)
             } catch (err) {
                 console.log(err)
@@ -26,7 +26,7 @@ const Posts = () => {
 
     const handleDelete = async (id) => {
         try {
-            const deleted = await axios.delete(`http://localhost:5000/posts/${id}`, { data: { id: id, username: username.user.username } })
+            const deleted = await axios.delete(`https://blog-website-zkvz.onrender.com/posts/${id}`, { data: { id: id, username: username.user.username } })
             console.log('post deleted', deleted.data)
             setPosts(posts.filter(p => p._id !== id))
 
@@ -38,7 +38,7 @@ const Posts = () => {
  
     const handleLike = async(id)=>{
 try{
-    const response =  await axios.post('http://localhost:5000/posts/like',{id,username:username.user.username})
+    const response =  await axios.post('https://blog-website-zkvz.onrender.com/posts/like',{id,username:username.user.username})
              setPosts(posts.map(p => p._id === id ? response.data.post : p));
 }catch(err){
     console.log(err)
