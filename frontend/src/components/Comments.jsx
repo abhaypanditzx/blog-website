@@ -16,7 +16,7 @@ const Comments = ({post}) => {
     } 
   }
   return (
-    <div>
+    <div className='comments'>
       <h3>comments</h3>
       {
         allComments.map((c,i)=>(
