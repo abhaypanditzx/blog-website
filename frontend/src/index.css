@@ -74,3 +74,23 @@
         padding: 10px;
         
     }
+    @media only screen  and (max-width:"400px") {
+     .post{
+    
+    padding: 15px;
+    position:relative;
+    border-radius: 5px;
+    height:150px;
+    width:310px; 
+    margin-top: 40px;
+    box-shadow: 2px 2px 20px grey;
+}   
+
+.create-comment{
+        display: flex;
+        width: 290px;
+        height: fit-content;
+        padding: 10px;
+        
+    }
+    }
