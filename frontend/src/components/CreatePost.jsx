@@ -27,7 +27,7 @@ const CreatePost = () => {
       try{
         const user  =  JSON.parse(localStorage.getItem("user")); 
         if(post.length ===0) return console.log('post cannot empty')
-        const response = await  axios.post('httphttps://blog-website-zkvz.onrender.com/posts',{post:post,author: user.user.username})
+        const response = await  axios.post('httphttps://blog-website-ktc5.onrender.com/posts',{post:post,author: user.user.username})
       setPosts([response.data.savedPost, ...posts])
       }catch(err){
         console.error(err)
