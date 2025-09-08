@@ -8,6 +8,6 @@
     "mongoose": "^8.17.0",
     "nodemon": "^3.1.10"
   },"scripts": {
-    "start": "nodemon server/index.js"
+    "start": "node server/index.js"
   }
 }
