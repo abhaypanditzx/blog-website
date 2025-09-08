@@ -38,7 +38,7 @@ useEffect(() => { const user = localStorage.getItem("user")
   const handleLogout = () => {
     localStorage.clear();
     setMuser(null)
-    navigate('/')
+    navigate('/login')
   }
   return (
 

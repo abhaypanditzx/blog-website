@@ -1,8 +1,7 @@
 import React,{useState} from 'react'
 import axios from "axios";
 const Comments = ({post}) => {
-  console.log(post)
-  const username = JSON.parse(localStorage.getItem('user')).user.username;
+  const username = JSON.parse(localStorage.getItem('user'))?.user?.username;
   const [comment,setComment] = useState("");
   const [allComments,setAllComments] = useState(post.comments || []);
   const handleAddComment =async ()=>{

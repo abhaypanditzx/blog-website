@@ -30,7 +30,6 @@ const Posts = () => {
             console.log('post deleted', deleted.data)
             setPosts(posts.filter(p => p._id !== id))
 
-            console.log(id)
         } catch (err) {
             console.error(err)
         }
