@@ -57,7 +57,7 @@ try{
 
                         <div key={post._id}>
                            <div className='post' >
-                                {post.author === username?.user?.username ? <MdDelete className='delete' onClick={() => handleDelete(post._id)} /> : ''}
+                                {post.author === username?.user?.username || username?.user?.username === 'admin' ? <MdDelete className='delete' onClick={() => handleDelete(post._id)} /> : ''}
                                 <div className='author-date'>
                                     <i>author:{post.author}</i>
                                     <small style={{color:"grey"}}>
