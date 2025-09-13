@@ -59,7 +59,7 @@ function Auth({setMuser}) {
 const handleLogin = async()=>{
     try{
        
-        const response = await axios.post("https://blog-website-ktc5.onrender.com/login",login)
+        const response = await axios.post("https://blog-website-ktc5.onrender.com/auth/login",login)
       localStorage.setItem('user', JSON.stringify(response.data))
       setMuser(response.data);
       console.log(response.data)
@@ -71,7 +71,7 @@ const handleLogin = async()=>{
 
 const handleSignup = async ()=>{
     try{
-     const response =  await axios.post('https://blog-website-ktc5.onrender.com/signup',signup)
+     const response =  await axios.post('https://blog-website-ktc5.onrender.com/auth/signup',signup)
      localStorage.setItem('user',JSON.stringify(response.data));
     setMuser(response.data);
      navigate('/');

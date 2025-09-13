@@ -27,6 +27,18 @@ app.get('/users',async(req,res)=>{
     }
 })
 
+app.post("/comment",async(req,res)=>{
+    const {id,comment,username} = req.body;
+    try{
+
+        const post = await  Post.findById(id);
+        post.comments.push({username,comment})
+    await post.save()
+    res.json({post})
+    }catch(err){
+          res.status(500).json({ error: err.message });
+    }
+})
 const PORT = 5000;
 app.listen(PORT, () => {
     console.log(`server is running on port:${PORT}`)
