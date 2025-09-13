@@ -54,7 +54,7 @@ exports.deletePost =  async(req,res)=>{
     const {id,username} =  req.body;
     const post = await Post.findById(id);
     if(!post) return res.status(404).json({message: 'Post not found'});
-    if(post.author !== username) {
+    if(post.author || 'admin' !== username) {
       return res.status(403).json({message: 'You can only delete your own posts'});
     }
     const deleted = await Post.findOneAndDelete({_id:id})
