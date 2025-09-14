@@ -3,7 +3,10 @@ import axios from "axios";
 const Comments = ({post}) => {
   const username = JSON.parse(localStorage.getItem('user'))?.user?.username;
   const [comment,setComment] = useState("");
+  const [showAll,setShowAll] = useState(false)
   const [allComments,setAllComments] = useState(post.comments || []);
+  const visibleComments = showAll ? allComments : allComments.slice(-2); 
+  console.log(visibleComments)
   const handleAddComment =async ()=>{
     if(!comment.trim()) return;
     try{
@@ -17,12 +20,30 @@ const Comments = ({post}) => {
   return (
     <div className='comments'>
       <h3>comments</h3>
-      {
-        allComments.map((c,i)=>(
+            {visibleComments.length === 0 ? (<h5>no comments yet</h5>):
+          
+        visibleComments.map((c,i)=>(
           <div key={i}>
              <strong>{c.username}:</strong>{c.text}
+             
           </div>
         ))}
+        {
+          allComments.length > 2 && (
+        <button
+          onClick={() => setShowAll(!showAll)}
+          style={{
+            background: "none",
+            border: "none",
+            color: "blue",
+            cursor: "pointer",
+            marginTop: "5px"
+          }}
+        >
+          {showAll ? "Hide comments" : "View more"}
+        </button>
+      )}
+        
         <input type="text" 
         value={comment}
         placeholder='add a comment...'

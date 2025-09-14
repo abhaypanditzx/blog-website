@@ -5,16 +5,12 @@ import axios from 'axios'
 const Container = styled(Box)`
 display:flex;
 height:fit-content; 
-position:fixed; 
-bottom:0;
 display:flex;
-left:0;
 justify-content:center;
-margin:5px;
-width:100vw;
+margin-top:20px;
+width:auto;
 background-color:white;
 padding:10px;
-box-shadow:1px 2px 10px black;
 `
 const CreatePost = () => {
  
