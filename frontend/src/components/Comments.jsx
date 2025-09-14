@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import axios from "axios";
 const Comments = ({post}) => {
   const username = JSON.parse(localStorage.getItem('user'))?.user?.username;
+  const token = JSON.parse(localStorage.getItem("token"))
   const [comment,setComment] = useState("");
   const [showAll,setShowAll] = useState(false)
   const [allComments,setAllComments] = useState(post.comments || []);
@@ -10,7 +11,10 @@ const Comments = ({post}) => {
   const handleAddComment =async ()=>{
     if(!comment.trim()) return;
     try{
-      const res =  await axios.post(`https://blog-website-ktc5.onrender.com/posts/${post._id}/comment`,{username:username,text:comment,});
+      const res =  await axios.post(`https://blog-website-ktc5.onrender.com/posts/${post._id}/comment`,
+        {text:comment},
+         {headers: { Authorization: `Bearer ${token}` }
+});
       setAllComments(res.data.post.comments); // UI update
       setComment("") //clear input
     }catch(err){
