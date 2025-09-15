@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { Avatar, Box, styled, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useCustomHook } from "../contexts/GlobalContext";
 const Navbar = styled(Box)`
+
 background:black;
 display:flex;
 align-items:center;
@@ -30,21 +32,23 @@ width:fit-content;
 margin:20px;}
 `
 const Nav = () => {
-  const username = JSON.parse(localStorage.getItem('user'));
-  console.log(username)
+  const {userName,setUserName} = useCustomHook()
+   
+  useEffect(()=>{
+     setUserName(JSON.parse(localStorage.getItem('user'))?.username);
+  })
   const navigate = useNavigate()
-
   const handleLogout = () => {
     localStorage.clear();
-    
     navigate('/auth')
+
   }
   return (
 
     <Navbar>
-      {username?.username ? ( <><div>
+      {userName ? ( <><div>
           <Avatar alt="U">{"U"}</Avatar>
-            {username?.username} 
+            {userName} 
           </div>
             <Button variant="outlined"  onClick={()=>handleLogout()}>logout</Button> </>) 
             : (<Button variant="outlined"  onClick={() => navigate('/auth')}>Login</Button>)

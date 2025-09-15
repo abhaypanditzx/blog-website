@@ -4,19 +4,19 @@ import { MdDelete } from "react-icons/md";
 import CreatePost from './CreatePost'
 import { useCustomHook } from '../contexts/GlobalContext';
 import { FaHeart } from "react-icons/fa"; // ❤️ icon
-import { FaRegComments } from "react-icons/fa";
 import Comments from './Comments';
-import { Button, TextField } from '@mui/material';
 const Posts = () => {
     const { posts, setPosts } = useCustomHook();
-    // const {toggleLike, setToggleLike} =  useCustomHook()
+    const {API,userName} =  useCustomHook()
     const [comment, setComment] = useState([])
-    const username = JSON.parse(localStorage.getItem('user'))
+    // const userName = JSON.parse(localStorage.getItem('user'))
+
     useEffect(() => {
         const getPosts = async () => {
             try {
-                const response = await axios.get('https://blog-website-ktc5.onrender.com/posts');
+                const response = await axios.get(`${API}/posts`);
                 setPosts(response.data)
+          
             } catch (err) {
                 console.log(err)
             }
@@ -25,24 +25,20 @@ const Posts = () => {
     }, [])
 
     const handleDelete = async (id) => {
-            
-
-
         try {
-            const deleted = await axios.delete(`https://blog-website-ktc5.onrender.com/posts/${id}`)
+            const deleted = await axios.delete(`${API}/posts/${id}`,{data:{username:userName}})
             console.log('post deleted', deleted.data)
             setPosts(posts.filter(p => p._id !== id))
 
         } catch (err) {
-            console.error(err)
+            console.error("failed to delete post",err)
         }
     }
 
     const handleLike = async (id) => {
-                const token = localStorage.getItem("token")
 
         try {
-            const response = await axios.post('https://blog-website-ktc5.onrender.com/posts/like', { id })
+            const response = await axios.post(`${API}/posts/like`, { id,username:userName })
             setPosts(posts.map(p => p._id === id ? response.data.post : p));
         } catch (err) {
             console.log(err)
@@ -62,7 +58,7 @@ const Posts = () => {
 
                                 <div key={post._id}>
                                     <div className='post' >
-                                        {post.author === username?.user?.username || username?.user?.username === 'admin' ? <MdDelete className='delete' onClick={() => handleDelete(post._id)} /> : ''}
+                                        {post.author === userName || userName === 'admin' ? <MdDelete className='delete' onClick={() => handleDelete(post._id)} /> : ''}
                                         <div className='author-date'>
                                             <i>author:{post.author}</i>
                                             <small style={{ color: "grey" }}>
@@ -82,7 +78,7 @@ const Posts = () => {
                                                 <FaHeart
                                                     onClick={() => handleLike(post._id)}
                                                     style={{
-                                                        color: (post.likes && post.likes.includes(username?.user?.username)) ? 'red' : 'grey'
+                                                        color: (post.likes && post.likes.includes(userName)) ? 'red' : 'grey'
                                                     }} />{post.likes.length}
                                             </div>
                                         </div>

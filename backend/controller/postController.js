@@ -3,8 +3,7 @@ const app = express();
 const Post  = require('../models/Post')
 
 exports.createPost  =  async(req,res)=>{
-     const {post} =  req.body
-     const username = req.user.username;
+     const {post,username} =  req.body
     try{
         const newPost = new Post({post,author:username})
         const savedPost = await newPost.save()
@@ -23,8 +22,7 @@ exports.createPost  =  async(req,res)=>{
 
 exports.likePost =  async (req,res)=>{
     try{
-        const {id} = req.body;
-        const username =  req.user.username;
+        const {id,username} = req.body;
         const post = await Post.findById(id);
         if(!post) return res.status(404).json({message:'post not found'});
          if(post.likes.includes(username)){
@@ -54,12 +52,11 @@ exports.deletePost =  async(req,res)=>{
 
     try{
     const {id} =  req.params;
-    const username =  req.user.username;
-    const isAdmin =req.user.isAdmin;
+    const {username} =  req.body;
     const post = await Post.findById(id);
     if(!post) return res.status(404).json({message: 'Post not found'});
 
-    if(post.author !== username && !isAdmin ) {
+    if(post.author !== username && username !=='admin' ) {
       return res.status(403).json({message: 'You can only delete your own posts'});
     }
     const deleted = await Post.findOneAndDelete({_id:id})
@@ -72,9 +69,9 @@ exports.deletePost =  async(req,res)=>{
 exports.createComment  = async(req,res)=>{
     try{
         const {id} = req.params;
-        const {text}= req.body;
-        const username =  req.user.username;
-        if(!username) return res.status(400).json({message:'please login first'})
+        const {text,username}= req.body;
+        console.log(username)
+        if(!username || !username.trim() ) return res.status(400).json({message:'please login first'})
         const post = await Post.findById(id);
         if(!post) return  res.status(404).json({ message: "Post not found" });
 

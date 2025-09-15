@@ -1,6 +1,5 @@
 const express =  require("express");
 const {likePost,createPost,deletePost,getPost, createComment} = require("../controller/postController");
-const {auth} = require("../middleware/auth")
 const app =  express();
 const router =  express.Router();
 

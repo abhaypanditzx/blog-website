@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react';
 import {Box, Button, styled, TextField} from '@mui/material'
 import { useCustomHook } from '../contexts/GlobalContext'
 import axios from 'axios'
@@ -13,19 +13,14 @@ background-color:white;
 padding:10px;
 `
 const CreatePost = () => {
- 
-   
-    const {post,setPost,posts,setPosts} = useCustomHook();
+    const {post,setPost,posts,setPosts,API,userName} = useCustomHook();
     const handlePostChange = (e)=>{
       setPost(e.target.value)
     }
-    const handlePostCreate = async()=>{
+    const handlePostCreate = async ()=>{
       try{
-        const token = localStorage.getItem("token")
-        const user  =  JSON.parse(localStorage.getItem("user")); 
-        if(post.length ===0) return console.log('post cannot empty')
-        const response = await  axios.post('https://blog-website-ktc5.onrender.com/posts',{post}, {headers: { Authorization: `Bearer ${token}` }
-    })
+        if(post.length === 0) return console.log('post cannot be empty')
+        const response = await  axios.post(`${API}/posts`,{post,username:userName})
       setPosts([response.data.savedPost, ...posts])
       }catch(err){
         console.error(err)

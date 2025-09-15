@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Box, TextField, styled, Button } from '@mui/material'
 import {useNavigate} from 'react-router-dom'
+import { useCustomHook } from '../contexts/GlobalContext';
 import axios from 'axios';
 const Component = styled(Box)`
 width:400px;
@@ -29,15 +30,17 @@ name:"",
 username:"",
 password:""
 }
-
 const loginValues = {
 username:"",
 password:""}
-function Auth({setMuser}) {
+function Auth() {
+
     const [authToggle, setAuthToggle] = useState('login')
     const [signup,setSignup] = useState(signupValues)
     const [login, setLogin] = useState(loginValues); 
     const navigate = useNavigate()
+    const {API}  = useCustomHook() //API url
+ 
 
     const handleAuthMethod = () => {
         if (authToggle !== "login") {
@@ -59,9 +62,7 @@ function Auth({setMuser}) {
 const handleLogin = async()=>{
     try{
        
-        const res = await axios.post("https://blog-website-ktc5.onrender.com/auth/login",login)
-        const token = res.data.token
-      localStorage.setItem('user', JSON.stringify(res.data.user))
+   const res = await axios.post(`${API}/auth/login`,login)
     localStorage.setItem("user", JSON.stringify(res.data.user)); // user info bhi save
     console.log("auth.js file frontend get item from localstorage:",JSON.parse(localStorage.getItem("user")));
       navigate('/');
@@ -72,9 +73,8 @@ const handleLogin = async()=>{
 
 const handleSignup = async ()=>{
     try{
-     const res =  await axios.post('https://blog-website-ktc5.onrender.com/auth/signup',signup)
+     const res =  await axios.post(`${API}/signup`,signup)
      localStorage.setItem('user',JSON.stringify(res.data));
-    // setMuser(res.data);
      navigate('/');
      console.log("new user created with auth.js file ",res.data);
     }catch(err){
