@@ -25,7 +25,8 @@ const Posts = () => {
     }, [])
 
     const handleDelete = async (id) => {
-        const token = JSON.parse(localStorage.getItem('token'));
+              const token = localStorage.getItem("token")
+
 
         try {
             const deleted = await axios.delete(`https://blog-website-ktc5.onrender.com/posts/${id}`, {
@@ -40,7 +41,8 @@ const Posts = () => {
     }
 
     const handleLike = async (id) => {
-        const token = JSON.parse(localStorage.getItem('token'));
+                const token = localStorage.getItem("token")
+
         try {
             const response = await axios.post('https://blog-website-ktc5.onrender.com/posts/like', { id }, { headers: { Authorization: `Bearer ${token}` } })
             setPosts(posts.map(p => p._id === id ? response.data.post : p));

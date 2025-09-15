@@ -21,7 +21,7 @@ const CreatePost = () => {
     }
     const handlePostCreate = async()=>{
       try{
-        const token = JSON.parse(localStorage.getItem("token"))
+        const token = localStorage.getItem("token")
         const user  =  JSON.parse(localStorage.getItem("user")); 
         if(post.length ===0) return console.log('post cannot empty')
         const response = await  axios.post('https://blog-website-ktc5.onrender.com/posts',{post}, {headers: { Authorization: `Bearer ${token}` }

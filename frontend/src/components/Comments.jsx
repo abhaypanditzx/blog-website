@@ -1,8 +1,8 @@
 import React,{useState} from 'react'
 import axios from "axios";
 const Comments = ({post}) => {
-  const username = JSON.parse(localStorage.getItem('user'))?.user?.username;
-  const token = JSON.parse(localStorage.getItem("token"))
+  // const username = JSON.parse(localStorage.getItem('user'))?.user?.username;
+  const token = localStorage.getItem("token")
   const [comment,setComment] = useState("");
   const [showAll,setShowAll] = useState(false)
   const [allComments,setAllComments] = useState(post.comments || []);
@@ -27,8 +27,9 @@ const Comments = ({post}) => {
             {visibleComments.length === 0 ? (<h5>no comments yet</h5>):
           
         visibleComments.map((c,i)=>(
+          
           <div key={i}>
-             <strong>{c.username}:</strong>{c.text}
+             <strong>{JSON.stringify(c)}:</strong>{c.text}
              
           </div>
         ))}

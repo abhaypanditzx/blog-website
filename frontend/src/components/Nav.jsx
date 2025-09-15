@@ -29,23 +29,22 @@ height:fit-content;
 width:fit-content;
 margin:20px;}
 `
-const Nav = ({muser, setMuser}) => {
+const Nav = () => {
+  const username = JSON.parse(localStorage.getItem('user'));
+  console.log(username)
   const navigate = useNavigate()
-useEffect(() => { const user = localStorage.getItem("user") 
-  if (user) { setMuser(JSON.parse(user)) } }, [])
-
 
   const handleLogout = () => {
     localStorage.clear();
-    setMuser(null)
-    navigate('/login')
+    
+    navigate('/auth')
   }
   return (
 
     <Navbar>
-      {muser ? ( <><div>
-          <Avatar alt="a">A</Avatar>
-            {muser.user.username} 
+      {username?.username ? ( <><div>
+          <Avatar alt="U">{"U"}</Avatar>
+            {username?.username} 
           </div>
             <Button variant="outlined"  onClick={()=>handleLogout()}>logout</Button> </>) 
             : (<Button variant="outlined"  onClick={() => navigate('/auth')}>Login</Button>)
