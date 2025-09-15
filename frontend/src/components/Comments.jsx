@@ -29,7 +29,7 @@ const Comments = ({post}) => {
         visibleComments.map((c,i)=>(
           
           <div key={i}>
-             <strong>{JSON.stringify(c)}:</strong>{c.text}
+             <strong>{c.username}:</strong>{c.text}
              
           </div>
         ))}

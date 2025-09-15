@@ -62,9 +62,8 @@ const handleLogin = async()=>{
         const res = await axios.post("https://blog-website-ktc5.onrender.com/auth/login",login)
         const token = res.data.token
       localStorage.setItem('user', JSON.stringify(res.data.user))
-         localStorage.setItem("token", token); // browser me save
     localStorage.setItem("user", JSON.stringify(res.data.user)); // user info bhi save
-    console.log(JSON.parse(localStorage.getItem("user")));
+    console.log("auth.js file frontend get item from localstorage:",JSON.parse(localStorage.getItem("user")));
       navigate('/');
     }catch(err)
 {
@@ -75,11 +74,9 @@ const handleSignup = async ()=>{
     try{
      const res =  await axios.post('https://blog-website-ktc5.onrender.com/auth/signup',signup)
      localStorage.setItem('user',JSON.stringify(res.data));
-     localStorage.setItem('token',JSON.stringify(res.data.token))
     // setMuser(res.data);
      navigate('/');
-     console.log(res.data);
-     alert('signedUp successfully!');
+     console.log("new user created with auth.js file ",res.data);
     }catch(err){
         console.error(err.response?.data?.message || err.message)
     }

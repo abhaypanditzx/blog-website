@@ -25,13 +25,11 @@ const Posts = () => {
     }, [])
 
     const handleDelete = async (id) => {
-              const token = localStorage.getItem("token")
+            
 
 
         try {
-            const deleted = await axios.delete(`https://blog-website-ktc5.onrender.com/posts/${id}`, {
-                headers: { Authorization: `Bearer ${token}` }
-            })
+            const deleted = await axios.delete(`https://blog-website-ktc5.onrender.com/posts/${id}`)
             console.log('post deleted', deleted.data)
             setPosts(posts.filter(p => p._id !== id))
 
@@ -44,7 +42,7 @@ const Posts = () => {
                 const token = localStorage.getItem("token")
 
         try {
-            const response = await axios.post('https://blog-website-ktc5.onrender.com/posts/like', { id }, { headers: { Authorization: `Bearer ${token}` } })
+            const response = await axios.post('https://blog-website-ktc5.onrender.com/posts/like', { id })
             setPosts(posts.map(p => p._id === id ? response.data.post : p));
         } catch (err) {
             console.log(err)

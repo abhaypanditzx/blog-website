@@ -4,10 +4,10 @@ const {auth} = require("../middleware/auth")
 const app =  express();
 const router =  express.Router();
 
-router.post('/',auth,createPost);
-router.delete('/:id',auth,deletePost);
-router.post('/like',auth,likePost);
+router.post('/',createPost);
+router.delete('/:id',deletePost);
+router.post('/like',likePost);
 router.get('/',getPost);
-router.post("/:id/comment",auth,createComment);
+router.post("/:id/comment",createComment);
 
 module.exports = router;
