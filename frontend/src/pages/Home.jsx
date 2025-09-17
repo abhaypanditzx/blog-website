@@ -4,12 +4,6 @@ import { Box ,Typography,Button, styled} from '@mui/material'
 
 import Posts from '../components/Posts'
 const Container =  styled(Box)`
-display:flex;
-flex-direction:column;
-justify-content:start;
-height:100vh; 
-align-items:center;
-
 
 & > Button {
 width:fit-content;
@@ -19,9 +13,9 @@ margin-top:10px;
 const Home = () => {
     const navigate =  useNavigate();
   return (
-    <Container >
+    <div className='flex flex-col items-center h-full bg-gray-100 p-10'>
       <Posts/>
-    </Container>
+    </div>
   )
 }
 

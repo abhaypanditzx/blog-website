@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useCustomHook } from "../contexts/GlobalContext";
+import { IoSend } from "react-icons/io5";
+
 const Comments = ({ post }) => {
   const { API, userName } = useCustomHook();
   const [comment, setComment] = useState("");
@@ -22,14 +24,14 @@ const Comments = ({ post }) => {
     }
   };
   return (
-    <div className="comments">
-      <h3>comments</h3>
+    <div className="mt-[10px] max-[400px]:w-[300px] w-[400px] flex flex-col flex-nowrap">
+      <h3 className="mx-[5px] text-gray-500">comments</h3>
       {visibleComments.length === 0 ? (
-        <h5>no comments yet</h5>
+        <h5 className="text-sm">no comments yet</h5>
       ) : (
         visibleComments.map((c, i) => (
-          <div key={i}>
-            <strong>{c.username}:</strong>
+          <div key={i} className="px-[10px]">
+            <strong className="text-md ">{c.username}:</strong>
             {c.text}
           </div>
         ))
@@ -37,25 +39,27 @@ const Comments = ({ post }) => {
       {allComments.length > 2 && (
         <button
           onClick={() => setShowAll(!showAll)}
-          style={{
-            background: "none",
-            border: "none",
-            color: "blue",
-            cursor: "pointer",
-            marginTop: "5px",
-          }}
+          className="bg-none border-none text-blue-400 text-sm cursor-pointer mt-[5px]"
         >
           {showAll ? "Hide comments" : "View more"}
         </button>
       )}
 
-      <input
-        type="text"
-        value={comment}
-        placeholder="add a comment..."
-        onChange={(e) => setComment(e.target.value)}
-      />
-      <button onClick={handleAddComment}>post comment</button>
+      <div className="flex  border-[1px] w-fit border-gray-500 ">
+        <input
+          type="text"
+          value={comment}
+          className="outline-none p-1"
+          placeholder="add a comment..."
+          onChange={(e) => setComment(e.target.value)}
+        />
+        <button
+          className="bg-gray-900 text-white  min-w-[50px] flex justify-center items-center h-[40px]"
+          onClick={handleAddComment}
+        >
+          <IoSend classsname="hover:text-white text-gray-100" />
+        </button>
+      </div>
     </div>
   );
 };

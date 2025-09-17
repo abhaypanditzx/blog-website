@@ -1,18 +1,8 @@
+@import "tailwindcss";
 *{
- margin: 0;
- padding: 0;
  box-sizing: border-box;
 }
-.post{
-    
-    padding: 15px;
-    position:relative;
-    border-radius: 5px;
-    height:150px;
-    width:500px; 
-    margin-top: 40px;
-    box-shadow: 2px 2px 20px grey;
-}
+
 .author-date{
     display:flex;
     flex-direction: column;
@@ -27,65 +17,6 @@
  right:2px; 
  padding: 0px;
 }
-.postBottom{
-    
-    bottom: 0;
-    display:flex; 
-    justify-content: start;
-    align-items: center;
-    width: 100%; 
 
-    padding: 10px;
-}
-.child-posts{
-    display: flex;
-    flex-direction:column;
-     flex-wrap:nowrap;
-     height: 100%;
-     align-items: center;
-     width: 100%;
-    }
-    .parent-posts{
-    height: 100%; 
-    width: 100vw;
-}
-    .comments{
-        margin-top: 10px;
-    
-    }
-    .comment-nav{
-        display:flex;
-        justify-content: space-around;
-        align-items:center;
-        font-size: 20px;
-        padding: 4px;
-    }
 
-    .create-comment{
-        display: flex;
-        width: 400px;
-        height: fit-content;
-        padding: 10px;
-    }
 
-    @media only screen  and (max-width:500px) {
-     .post{
-    
-    padding: 15px;
-    position:relative;
-    border-radius: 5px;
-    height:150px;
-    width:310px; 
-    margin-top: 40px;
-       box-shadow: 2px 2px 20px grey;
-
-}   
-
-.create-comment{
-        display: flex;
-        width: 290px;
-        height: fit-content;
-        padding: 10px;
-    }
-   
-    }
