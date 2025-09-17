@@ -31,7 +31,7 @@ const CreatePost = () => {
         className="max-sm:w-[300px] h-full outline-none p-2 "
         onChange={(e) => handlePostChange(e)}
       />
-      <button variant="contained" className="h-full min-w-[60px]  bg-gray-800 text-white" onClick={() => handlePostCreate()}>
+      <button variant="contained" className="h-full min-w-[60px] min-sm:w-[90px] font-bold bg-gray-800 text-white" onClick={() => handlePostCreate()}>
         post
       </button>
     </div>
