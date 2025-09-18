@@ -8,7 +8,7 @@ const CreatePost = () => {
   const handlePostChange = (e) => {
     setPost(e.target.value);
   };
-  const regularName = JSON.parse(localStorage.getItem('user')).name
+  const regularName = JSON.parse(localStorage.getItem('user'))?.name
   const handlePostCreate = async () => {
     try {
       if (post.length === 0) return console.log("post cannot be empty");
@@ -23,7 +23,7 @@ const CreatePost = () => {
   };
 
   return (
-    <div className="flex h-[80px] outline-1 justify-between items-center  mt-[20px] max-[500px]:w-[340px] min-w-[300px]  max-w-[500px] bg-white/30 ">
+    <div className="flex h-[80px] outline-1 justify-between items-center  mt-[20px] max-[500px]:w-[320px] min-w-[300px]  max-w-[500px] bg-white/30 ">
       <input
         value={post}
         placeholder={`what's on your mind,${regularName}?`}
