@@ -5,6 +5,7 @@ const Post  = require('../models/Post')
 exports.createPost  =  async(req,res)=>{
      const {post,username} =  req.body
     try{
+     if(username === '' && null) return res.json({message:"login first!"});
         const newPost = new Post({post,author:username})
         const savedPost = await newPost.save()
         res.status(201).json({savedPost})
