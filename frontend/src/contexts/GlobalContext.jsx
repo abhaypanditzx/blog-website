@@ -1,6 +1,6 @@
 import {  createContext,useState,useContext } from "react";
-// const  API = "https://blog-website-ktc5.onrender.com";
-const API = "http://localhost:5000";
+const  API = "https://blog-website-ktc5.onrender.com";
+// const API = "http://localhost:5000";
 
 
 //create context
