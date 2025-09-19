@@ -1,10 +1,12 @@
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
+
+
 exports.signup = async (req, res) => {
-  const { name, username, password } = req.body;
-  console.log(name, username, password);
   console.log("signup route hit");
   try {
+    const { name, username, password } = req.body;
+    console.log(name, username, password);
     const userExist = await User.findOne({ username });
     if (userExist)
       return res.status(400).json({ message: "Username already taken" });

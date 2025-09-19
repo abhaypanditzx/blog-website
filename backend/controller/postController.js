@@ -3,9 +3,10 @@ const app = express();
 const Post  = require('../models/Post')
 
 exports.createPost  =  async(req,res)=>{
-     const {post,username} =  req.body
+     const {post, username} =  req.body
+     console.log("username:",username)
     try{
-     if(!username) return res.json({message:"login first!"});
+     if(!username && !username.trim()) return res.json({message:"login first!"});
         const newPost = new Post({post,author:username})
         const savedPost = await newPost.save()
         res.status(201).json({savedPost})

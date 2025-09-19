@@ -8,9 +8,6 @@ import Comments from "./Comments";
 const Posts = () => {
   const { posts, setPosts } = useCustomHook();
   const { API, userName } = useCustomHook();
-  const [comment, setComment] = useState([]);
-  // const userName = JSON.parse(localStorage.getItem('user'))
-
   useEffect(() => {
     const getPosts = async () => {
       try {
@@ -48,16 +45,16 @@ const Posts = () => {
   };
 
   return (
-    <div className=" ">
+    <div className="">
       <CreatePost />
-      <div className="flex flex-col  items-center flex-nowrap w-full  h-full">
+      <div className="flex flex-col   justify-center items-center flex-nowrap w-full  h-full">
         {posts.length === 0 ? (
           <div> no posts </div>
         ) : (
           posts.map((post) => (
-            <div key={post._id} className=" w-max mt-[20px] ">
+            <div key={post._id} className="max-[350px]:w-[90vw] mt-[20px] ">
               <div className="p-[15px] relative bg-white shadow-md  h-fit min-w-[300px] max-w-[500px] mt-[40px] ">
-                {post.author === userName || userName === "admin" ? (
+                {post?.author === userName || userName === "admin" ? (
                   <MdDelete
                     className="delete"
                     onClick={() => handleDelete(post._id)}
@@ -66,7 +63,7 @@ const Posts = () => {
                   ""
                 )}
                 <div className="author-date">
-                  <i>author:{post.author}</i>
+                  <i>author:{post.author ? post.author : ''}</i>
                   <small style={{ color: "grey" }}>
                     {new Date(post.createdAt).toLocaleString("en-IN", {
                       dateStyle: "medium",
